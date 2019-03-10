@@ -1,0 +1,39 @@
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+<h1>検索ワードを入力してください</h1>
+
+<%= form_with  url: search_standerd_path, method: :get, local: true do |f| %>
+	<div class="form">
+		<%= f.label :word, "検索ワード"%>
+		<%= f.text_field :word, name: :word, placeholder: '検索ワード' %>
+		<%= f.submit 'Search',name: nil%>
+	</div>
+	
+<% end %>
+<% if  params[:word]%>
+	<%= button_to("Download","/download",{method: :post,params: {file_name: @file_name}}) %>
+	<table>
+		<thead>
+			<%@x.each do |tweet|%>
+			<tr>
+			<td><%= image_tag(tweet.account_icon_url)%><%= tweet.account_name%></td>
+			<td><%= link_to(tweet.text,tweet.url,class: "tweet_text") %></td>
+			<td><%= tweet.rt %></td>
+			<td><%= tweet.fav %></td>
+			<td><%= tweet.date %> <%= tweet.time %></td>
+			<td>
+				<%tweet.images.each do |image|%>
+				<%= image_tag(image.url,class: "tweet_image") %>
+				<%end%>
+			</td>
+			</tr>
+			<%end%>
+			</thead>
+	</table>
+	<br>
+	
+	<br>
+	
+	
+<% end %>

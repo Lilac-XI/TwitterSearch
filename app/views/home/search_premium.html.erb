@@ -1,0 +1,23 @@
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+<h1>検索ワードを入力してください。プレミアム検索！</h1>
+
+<%= form_with  url: search_premium_path, method: :get, local: true do |f| %>
+	<div class="form">
+		<nav>
+		<%= f.label :word, "検索ワード"%>
+		<%= f.text_field :word, name: :word, placeholder: '検索ワード' %>
+		</nav>
+		<nav>
+		<%= f.label :word, "~日から(from)"%>
+		<%= f.text_field :from, name: :from, placeholder: '20xx0x0x0000' %>
+		</nav>
+		<nav>
+		<%= f.label :word, "〜日まで(to)"%>
+		<%= f.text_field :to, name: :to, placeholder: '20xx0x0x0000' %>
+		</nav>
+		<%= f.submit 'Search',name: nil%>
+	</div>
+	
+<% end %>

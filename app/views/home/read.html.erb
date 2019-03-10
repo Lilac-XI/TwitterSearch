@@ -1,0 +1,10 @@
+<%= form_with  url: import_path, method: :post,multipart: true, local: true do |f| %>
+	<div class="form">
+		<nav>
+		<%= f.label :word, "json アップロード"%>
+		<%= f.file_field :file,accept: ".json,text/json"%>
+		</nav>
+		<%= f.submit 'Json Upload',name: nil%>
+	</div>
+	
+<% end %>
